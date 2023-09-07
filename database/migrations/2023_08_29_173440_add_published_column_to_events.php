@@ -22,9 +22,9 @@ return new class extends Migration
         //     $table->dropColumn('status_id');
         // });
 
-        Schema::table('events', function (Blueprint $table):void {
-            $table->foreignId('publication_status_id')->nullable()->cascadeOnDelete()->constrained('publication_status');
-        });
+        // Schema::table('events', function (Blueprint $table):void {
+        //     $table->foreignId('publication_status_id')->nullable()->cascadeOnDelete()->constrained('publication_status');
+        // });
     }
 
     /**
