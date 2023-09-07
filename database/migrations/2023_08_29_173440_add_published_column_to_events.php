@@ -12,6 +12,15 @@ return new class extends Migration
     public function up(): void
     {
        
+        Schema::create('publication_status', function(Blueprint $table):void{
+            $table->id();
+            $table->text('name');
+        });
+        
+        Schema::table('events', function(Blueprint $table):void{
+            $table->dropForeign('status_id_foreign');
+            $table->dropColumn('status_id');
+        });
 
         Schema::table('events', function (Blueprint $table):void {
             $table->foreignId('publication_status_id')->nullable()->cascadeOnDelete()->constrained('publication_status');
