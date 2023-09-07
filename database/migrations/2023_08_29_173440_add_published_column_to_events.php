@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
        
-        Schema::create('publication_status', function(Blueprint $table):void{
-            $table->id();
-            $table->text('name');
-        });
+        // Schema::create('publication_status', function(Blueprint $table):void{
+        //     $table->id();
+        //     $table->text('name');
+        // });
         
         // Schema::table('events', function(Blueprint $table):void{
         //     $table->dropForeign('status_id_foreign');
