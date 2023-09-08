@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\FieldSet;
+use Filament\Forms\Components\Fieldset;
 
 class UserResource extends Resource
 {
@@ -26,7 +26,7 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-            FieldSet::make('User Info')
+            Fieldset::make('User Info')
                 ->schema([
                     TextInput::make('name')->required(),
                     TextInput::make('email')->email()->required(),
