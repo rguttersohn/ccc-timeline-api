@@ -51,5 +51,20 @@ class EraAPIController extends Controller
         return $eras;
 
     }
+
+    public function getProductionEras():array {
+       
+
+        $eras_query = DB::table('eras')
+            ->where('publication_status_id', '=', 3)
+            ->get()
+            ->toArray();
+
+
+        $eras = $this->getSortedQuery($eras_query);
+
+        return $eras;
+
+    }
      
 }

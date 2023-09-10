@@ -18,9 +18,10 @@
         justify-content: center;
     }
 </style>
+<h3 class="text-center text-blue-400">Select an environment</h3>
 <select 
-    id="env-buttons-section"
-    class="w-3/4 lg:w-1/4 mx-auto flex justify-center gap-x-10"
+    id="env-select-section"
+    class="w-3/4 lg:w-1/4 mb-10 mt-3 mx-auto flex justify-center gap-x-10 bg-white p-1 border-2 border-blue-400 rounded-lg text-blue-400"
 >
     <option value="staging" class="bg-blue-400 text-center p-3 text-white rounded-lg">Staging</option>
     <option value="production" class="bg-blue-400 text-center p-3 text-white rounded-lg">Production</option>
@@ -34,7 +35,7 @@ const apiEnvs = {
     'production' : "{{$production_url}}"
 }
 
-const environmentSelection = document.querySelector('#env-buttons-section');
+const environmentSelection = document.querySelector('#env-select-section');
 
 function renderTimeline(env){
 

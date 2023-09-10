@@ -29,28 +29,30 @@ class TitleAPIController extends Controller
 
 public function getProductionTitle(): array{
 
-        $title = DB::table('titles')
+        $title_query = DB::table('titles')
             ->orderBy('updated_at', 'desc')
             ->where('publication_status_id', '=', 3)
             ->limit(1)
             ->get()
             ->toArray();
         
-        return $title;
-    }
-
-    public function getStagingTitle():array {
-
-        $title_query = DB::table('titles')
-            ->where('publication_status_id', '=', 2)
-            ->orWhere('publication_status_id', '=', 3)
-            ->orderBy('publication_status_id', 'asc')
-            ->limit(1)
-            ->get()
-            ->toArray();
-
         $title = $this->sortQuery($title_query);
         
         return $title;
     }
+
+public function getStagingTitle():array {
+
+    $title_query = DB::table('titles')
+        ->where('publication_status_id', '=', 2)
+        ->orWhere('publication_status_id', '=', 3)
+        ->orderBy('publication_status_id', 'asc')
+        ->limit(1)
+        ->get()
+        ->toArray();
+
+    $title = $this->sortQuery($title_query);
+    
+    return $title;
+}
 }
