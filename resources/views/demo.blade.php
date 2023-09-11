@@ -33,25 +33,47 @@
 const apiEnvs = {
     'staging' : "{{$staging_url}}",
     'production' : "{{$production_url}}"
+};
+
+const defaultEnv = 'staging';
+
+const url = new URL(window.location.href)
+
+const params = new URLSearchParams(url.search);
+
+const env = params.get('env');
+
+function setDefaultParam(defautEnv){
+    if(!env){
+        params.set('env', defaultEnv);
+        window.history.replaceState(null,'',`${url.toString()}?${params.toString()}` );
+    }
+}
+
+function setParam(env){
+
+    params.set('env', env);
+    window.history.replaceState(null,'',`${url.toString()}?${params.toString()}` );
+    
 }
 
 const environmentSelection = document.querySelector('#env-select-section');
 
-function renderTimeline(env){
-
-    const apiURL = apiEnvs[`${env}`];    
+function renderTimeline(params){
+    const paramEnv = params.get('env');
+    const apiURL = apiEnvs[`${paramEnv}`];    
     const timeline = new TL.Timeline('timeline-embed',`${apiURL}`); 
 }
 
-
-renderTimeline('staging');
+setDefaultParam(defaultEnv);
+renderTimeline(params);
 
 environmentSelection.addEventListener('change', function(event){
 
     const env = event.target.value;
-
-    renderTimeline(env);
-
+    setParam(env);
+    renderTimeline(params);
+    
 });
 
 
